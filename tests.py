@@ -41,6 +41,7 @@ Friday, February 14
 from __init__ import (restructured_title, make_text_date, Formatter,
                       make_date_monday)
 import datetime as dt
+import unittest
 from nose.tools import eq_
 
 
@@ -60,62 +61,56 @@ def test_make_date_monday():
         eq_(exp, r)
 
 
+class testFormatter(unittest.TestCase):
+    def setUp(self):
+        self.f = Formatter(2014, 2, 13)
+        self.f.format()
 
-# def testFormatter():
-#     exp_result = """
-# 2014 February 10-16
-# ###################
+    def test_title_format(self):
+        eq_("""2014 February 10-16
+###################""", self.f.title)
 
-# :author: Ryan Dwyer
-# :date: 2014-02-10
-# :modified: 2014-02-10
-# :subtitle:  Weekly Summary
-# :tags: summary
+    def test_tags_format(self):
+        exp = """
+:author: Ryan Dwyer
+:date: 2014-02-10
+:modified: 2014-02-10
+:subtitle:  Weekly Summary
+:tags: summary"""
+        eq_(exp, self.f.tags)
 
-# Weekly Summary
-# ==============
-
-
-# Daily Summaries
-# ===============
-
-
-# Monday, February 10
-# -------------------
-
-
-# Tuesday, February 11
-# --------------------
+    def test_days_format(self):
+        exp = """Monday, February 10
+-------------------
 
 
-# Wednesday, February 12
-# ----------------------
+Tuesday, February 11
+--------------------
 
 
-# Thursday, February 13
-# ---------------------
+Wednesday, February 12
+----------------------
 
 
-# Friday, February 14
-# -------------------
+Thursday, February 13
+---------------------
 
 
-# """
-#     f = Formatter(2014, 2, 10)
-#     eq_(exp_result, f.format())
+Friday, February 14
+-------------------
+
 
 """
-A title
-=======
-"""
+        eq_(exp, self.f.days)
 
-"""
-2014 February {self.start}-{self.end}
-#############################
+    def test_total_format(self):
+        exp = """
+2014 February 10-16
+###################
 
 :author: Ryan Dwyer
-:date: {self.start}
-:modified: {self.start}
+:date: 2014-02-10
+:modified: 2014-02-10
 :subtitle:  Weekly Summary
 :tags: summary
 
@@ -126,13 +121,26 @@ Weekly Summary
 Daily Summaries
 ===============
 
-{self.monday}
 
-{self.tuesday}
+Monday, February 10
+-------------------
 
-{self.wednesday}
 
-{self.thursday}
+Tuesday, February 11
+--------------------
 
-{self.friday}
+
+Wednesday, February 12
+----------------------
+
+
+Thursday, February 13
+---------------------
+
+
+Friday, February 14
+-------------------
+
+
 """
+        eq_(exp, self.f.base)
