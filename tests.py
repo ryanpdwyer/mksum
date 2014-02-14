@@ -144,3 +144,6 @@ Friday, February 14
 
 """
         eq_(exp, self.f.result)
+
+    def test_make_filename(self):
+        eq_(self.f.filename(), "/content/summaries/201402_10-16-Weekly-Summary.rst")

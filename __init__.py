@@ -68,3 +68,7 @@ Daily Summaries
         self.tags = Formatter.base_tags(self=self)
         self.days = Formatter.base_days(self=self)
         self.result = Formatter.base(self=self)
+
+    def filename(self):
+        f = "/content/summaries/{start}-{end_day}-Weekly-Summary.rst".format
+        return f(start=self.start.strftime("%Y%m_%d"), end_day=self.end.day)
