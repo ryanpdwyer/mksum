@@ -38,12 +38,18 @@ Friday, February 14
 
 """
 
-from __init__ import restructured_title
+from __init__ import restructured_title, make_text_date
+import datetime
 from nose.tools import eq_
 
 
 def test_restructured_title():
     eq_(restructured_title("A title", "="), "A title\n=======")
+
+
+def test_make_text_date():
+    eq_(make_text_date(datetime.date(2014, 2, 10)), "Monday, February 10")
+
 
 """
 A title
