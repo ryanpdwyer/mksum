@@ -71,7 +71,7 @@ class testFormatter(unittest.TestCase):
 ###################""", self.f.title)
 
     def test_tags_format(self):
-        exp = """
+        exp = """\
 :author: Ryan Dwyer
 :date: 2014-02-10
 :modified: 2014-02-10
@@ -104,7 +104,7 @@ Friday, February 14
         eq_(exp, self.f.days)
 
     def test_total_format(self):
-        exp = """
+        exp = """\
 2014 February 10-16
 ###################
 
@@ -143,4 +143,4 @@ Friday, February 14
 
 
 """
-        eq_(exp, self.f.base)
+        eq_(exp, self.f.result)

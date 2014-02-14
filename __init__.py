@@ -18,7 +18,7 @@ def make_date_monday(date):
 class Formatter(object):
 
     base_title = """2014 February {self.start.day}-{self.end.day}""".format
-    base_tags = """
+    base_tags = """\
 :author: Ryan Dwyer
 :date: {self.start_iso}
 :modified: {self.start_iso}
@@ -41,7 +41,7 @@ class Formatter(object):
 
 
 """.format
-    base = """
+    base = """\
 {self.title}
 
 {self.tags}
@@ -52,6 +52,7 @@ Weekly Summary
 
 Daily Summaries
 ===============
+
 
 {self.days}""".format
 
@@ -66,4 +67,4 @@ Daily Summaries
         self.title = restructured_title(Formatter.base_title(self=self), "#")
         self.tags = Formatter.base_tags(self=self)
         self.days = Formatter.base_days(self=self)
-        self.base(self=self)
+        self.result = Formatter.base(self=self)
