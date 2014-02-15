@@ -69,6 +69,11 @@ Daily Summaries
         self.days = Formatter.base_days(self=self)
         self.result = Formatter.base(self=self)
 
+    @property
     def filename(self):
-        f = "/content/summaries/{start}-{end_day}-Weekly-Summary.rst".format
+        f = "content/summaries/{start}-{end_day}-Weekly-Summary.rst".format
         return f(start=self.start.strftime("%Y%m_%d"), end_day=self.end.day)
+
+    def write_file(self):
+        with open(self.filename, 'wb') as f:
+            f.write(self.result)

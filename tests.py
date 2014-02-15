@@ -43,6 +43,7 @@ from __init__ import (restructured_title, make_text_date, Formatter,
 import datetime as dt
 import unittest
 from nose.tools import eq_
+import os
 
 
 def test_restructured_title():
@@ -65,6 +66,46 @@ class testFormatter(unittest.TestCase):
     def setUp(self):
         self.f = Formatter(2014, 2, 13)
         self.f.format()
+        self.filename = "content/summaries/201402_10-16-Weekly-Summary.rst"
+        self.file_contents = """\
+2014 February 10-16
+###################
+
+:author: Ryan Dwyer
+:date: 2014-02-10
+:modified: 2014-02-10
+:subtitle:  Weekly Summary
+:tags: summary
+
+Weekly Summary
+==============
+
+
+Daily Summaries
+===============
+
+
+Monday, February 10
+-------------------
+
+
+Tuesday, February 11
+--------------------
+
+
+Wednesday, February 12
+----------------------
+
+
+Thursday, February 13
+---------------------
+
+
+Friday, February 14
+-------------------
+
+
+"""
 
     def test_title_format(self):
         eq_("""2014 February 10-16
@@ -104,46 +145,14 @@ Friday, February 14
         eq_(exp, self.f.days)
 
     def test_total_format(self):
-        exp = """\
-2014 February 10-16
-###################
+        eq_(self.file_contents, self.f.result)
 
-:author: Ryan Dwyer
-:date: 2014-02-10
-:modified: 2014-02-10
-:subtitle:  Weekly Summary
-:tags: summary
+    def test_filename(self):
+        eq_(self.f.filename, self.filename)
 
-Weekly Summary
-==============
-
-
-Daily Summaries
-===============
-
-
-Monday, February 10
--------------------
-
-
-Tuesday, February 11
---------------------
-
-
-Wednesday, February 12
-----------------------
-
-
-Thursday, February 13
----------------------
-
-
-Friday, February 14
--------------------
-
-
-"""
-        eq_(exp, self.f.result)
-
-    def test_make_filename(self):
-        eq_(self.f.filename(), "/content/summaries/201402_10-16-Weekly-Summary.rst")
+    def test_write_file(self):
+        self.f.write_file()
+        with open(self.filename, 'rb') as f:
+            filedata = f.read()
+        eq_(filedata, self.file_contents)
+        os.remove(self.f.filename)
