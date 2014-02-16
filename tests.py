@@ -64,7 +64,7 @@ def test_make_date_monday():
 
 class testFormatter(unittest.TestCase):
     def setUp(self):
-        self.f = Formatter(2014, 2, 13)
+        self.f = Formatter(dt.date(2014, 2, 13))
         self.f.format()
         self.filename = "content/summaries/201402_10-16-Weekly-Summary.rst"
         self.file_contents = """\

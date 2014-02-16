@@ -56,8 +56,8 @@ Daily Summaries
 
 {self.days}""".format
 
-    def __init__(self, year, month, day):
-        self.start = make_date_monday(dt.date(year, month, day))
+    def __init__(self, date):
+        self.start = make_date_monday(date)
         self.start_iso = self.start.isoformat()
         self.end = self.start + dt.timedelta(6)
         self.day_strings = [restructured_title(make_text_date(self.start
