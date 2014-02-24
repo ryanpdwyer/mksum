@@ -62,7 +62,7 @@ def test_make_date_monday():
         eq_(exp, r)
 
 
-class testFormatter(unittest.TestCase):
+class TestFormatter(unittest.TestCase):
     def setUp(self):
         self.f = Formatter(dt.date(2014, 2, 13))
         self.f.format()
@@ -156,3 +156,13 @@ Friday, February 14
             filedata = f.read()
         eq_(filedata, self.file_contents)
         os.remove(self.f.filename)
+
+
+class TestFormatterFilename(unittest.TestCase):
+    def setUp(self):
+        self.f = Formatter(dt.date(2014, 2, 24))
+        self.f.format()
+        self.filename = "content/summaries/201402_24-02-Weekly-Summary.rst"
+
+    def test_filename_overlap_month(self):
+        eq_(self.f.filename, self.filename)
