@@ -72,7 +72,8 @@ Daily Summaries
     @property
     def filename(self):
         f = "content/summaries/{start}-{end_day}-Weekly-Summary.rst".format
-        return f(start=self.start.strftime("%Y%m_%d"), end_day=self.end.day)
+        return f(start=self.start.strftime("%Y%m_%d"),
+                 end_day=self.end.strftime("%d"))
 
     def write_file(self):
         with open(self.filename, 'wb') as f:
