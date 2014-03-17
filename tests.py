@@ -66,6 +66,8 @@ class TestFormatter(unittest.TestCase):
     def setUp(self):
         self.f = Formatter(dt.date(2014, 2, 13))
         self.f.format()
+        self.f_mar = Formatter(dt.date(2014, 3, 17))
+        self.f_mar.format()
         self.filename = "content/summaries/201402_10-16-Weekly-Summary.rst"
         self.file_contents = """\
 2014 February 10-16
@@ -110,6 +112,7 @@ Friday, February 14
     def test_title_format(self):
         eq_("""2014 February 10-16
 ###################""", self.f.title)
+        eq_("2014 March 17-23\n################", self.f_mar.title)
 
     def test_tags_format(self):
         exp = """\
