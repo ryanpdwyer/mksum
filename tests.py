@@ -42,7 +42,7 @@ from __init__ import (restructured_title, make_text_date, Formatter,
                       make_date_monday)
 import datetime as dt
 import unittest
-from nose.tools import eq_
+from nose.tools import eq_, assert_raises
 import os
 
 
@@ -159,6 +159,19 @@ Friday, February 14
             filedata = f.read()
         eq_(filedata, self.file_contents)
         os.remove(self.f.filename)
+
+
+class TestFilenameExists(unittest.TestCase):
+    def setUp(self):
+        self.f = Formatter(dt.date(2014, 2, 10))
+        self.f.format()
+        open(self.f.filename, 'a').close()
+
+    def tearDown(self):
+        os.remove(self.f.filename)
+
+    def test_raise_IO_error(self):
+        assert_raises(IOError, self.f.write_file)
 
 
 class TestFormatterFilename(unittest.TestCase):

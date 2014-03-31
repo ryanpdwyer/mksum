@@ -1,4 +1,5 @@
 import datetime as dt
+import os.path
 
 
 def restructured_title(string, title_char):
@@ -77,5 +78,8 @@ Daily Summaries
                  end_day=self.end.strftime("%d"))
 
     def write_file(self):
-        with open(self.filename, 'wb') as f:
+        fname = self.filename
+        if os.path.isfile(fname):
+            raise IOError("The file {0} already exists.".format(fname))
+        with open(fname, 'wb') as f:
             f.write(self.result)
