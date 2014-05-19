@@ -8,32 +8,24 @@
 :subtitle:  Weekly Summary
 :tags: summary
 
-Weekly Summary
-==============
-
-
-Daily Summaries
-===============
-
-
 Monday, February 10
--------------------
+===================
 
 
 Tuesday, February 11
---------------------
+===================
 
 
 Wednesday, February 12
-----------------------
+======================
 
 
 Thursday, February 13
----------------------
+=====================
 
 
 Friday, February 14
--------------------
+===================
 
 
 """
@@ -79,32 +71,24 @@ class TestFormatter(unittest.TestCase):
 :subtitle:  Weekly Summary
 :tags: summary
 
-Weekly Summary
-==============
-
-
-Daily Summaries
-===============
-
-
 Monday, February 10
--------------------
+===================
 
 
 Tuesday, February 11
---------------------
+====================
 
 
 Wednesday, February 12
-----------------------
+======================
 
 
 Thursday, February 13
----------------------
+=====================
 
 
 Friday, February 14
--------------------
+===================
 
 
 """
@@ -124,24 +108,25 @@ Friday, February 14
         eq_(exp, self.f.tags)
 
     def test_days_format(self):
-        exp = """Monday, February 10
--------------------
+        exp = """\
+Monday, February 10
+===================
 
 
 Tuesday, February 11
---------------------
+====================
 
 
 Wednesday, February 12
-----------------------
+======================
 
 
 Thursday, February 13
----------------------
+=====================
 
 
 Friday, February 14
--------------------
+===================
 
 
 """
