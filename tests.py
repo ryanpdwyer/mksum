@@ -111,9 +111,9 @@ Friday, February 14
 """
 
     def test_title_format(self):
-        eq_("""2014 February 10-16
+        diff_lines("""2014 February 10-16
 ###################""", self.f.title)
-        eq_("2014 March 17-23\n################", self.f_mar.title)
+        diff_lines("2014 March 17-23\n################", self.f_mar.title)
 
     def test_tags_format(self):
         exp = """\
@@ -122,7 +122,7 @@ Friday, February 14
 :modified: 2014-02-10
 :subtitle:  Weekly Summary
 :tags: summary"""
-        eq_(exp, self.f.tags)
+        diff_lines(exp, self.f.tags)
 
     def test_days_format(self):
         exp = """\
@@ -150,7 +150,7 @@ Friday, February 14
         diff_lines(exp, self.f.days)
 
     def test_total_format(self):
-        eq_(self.file_contents, self.f.result)
+        diff_lines(self.file_contents, self.f.result)
 
     def test_filename(self):
         eq_(self.f.filename, self.filename)
