@@ -38,6 +38,23 @@ from nose.tools import eq_, assert_raises
 import os
 
 
+def diff_lines(s1, s2):
+    """Return a tuple of lines that are different
+    between string 1 and string 2."""
+    s1_lines = s1.splitlines()
+    s2_lines = s2.splitlines()
+    diff = [(s1i, s2i) for s1i, s2i in zip(s1_lines, s2_lines) if s1i != s2i]
+    if diff != []:
+        raise AssertionError("The lines:\n{}\nare different.".format(diff))
+
+
+def test_diff_lines():
+    a = "A title\nAn author"
+    b = "A title\nAn auther"
+    exp = [("An author", "An auther")]
+    assert_raises(AssertionError, diff_lines, a, b)
+
+
 def test_restructured_title():
     eq_(restructured_title("A title", "="), "A title\n=======")
 
@@ -130,7 +147,7 @@ Friday, February 14
 
 
 """
-        eq_(exp, self.f.days)
+        diff_lines(exp, self.f.days)
 
     def test_total_format(self):
         eq_(self.file_contents, self.f.result)
