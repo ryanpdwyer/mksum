@@ -30,7 +30,7 @@ Friday, February 14
 
 """
 
-from __init__ import (restructured_title, make_text_date, Formatter,
+from mksum import (restructured_title, make_text_date, Formatter,
                       make_date_monday)
 import datetime as dt
 import unittest
