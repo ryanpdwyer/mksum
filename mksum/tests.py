@@ -180,7 +180,10 @@ class TestFormatterFilename(unittest.TestCase):
     def setUp(self):
         self.f = Formatter(dt.date(2014, 2, 24))
         self.f.format()
-        self.filename = "content/summaries/201402_24-02-Weekly-Summary.rst"
+        self.filename = ".test-201402_24-02-Weekly-Summary.rst"
 
     def test_filename_overlap_month(self):
         eq_(self.f.filename, self.filename)
+
+    def tearDown(self):
+        os.remove(self.filename)
